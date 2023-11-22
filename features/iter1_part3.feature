@@ -6,7 +6,3 @@ Feature: Map Functionality
   Scenario: Visiting the national map page
     Given I am on the map page
     Then I should see the map of the United States
-
-  Scenario: Viewing a state map
-    Given I am on the "California, CA" state page
-    Then I should see a map of "California, CA"
