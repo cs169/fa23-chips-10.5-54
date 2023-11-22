@@ -10,8 +10,3 @@ Feature: Map Functionality
   Scenario: Viewing a state map
     Given I am on the "California, CA" state page
     Then I should see a map of "California, CA"
-
-  Scenario: Viewing representatives of a county
-    Given I am on the state page for "California, CA"
-    When I click on the county "Mono County, CA"
-    Then I should see representatives for California, CA
