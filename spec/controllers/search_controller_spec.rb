@@ -12,7 +12,7 @@ describe SearchController, type: :controller do
       allow(Google::Apis::CivicinfoV2::CivicInfoService).to receive(:new).and_return(@fake_service)
       allow(@fake_service).to receive(:representative_info_by_address).and_return(@fake_response)
       allow(@fake_service).to receive(:key=)
-      allow(Rails.application.credentials).to receive(:[]).with(:GOOGLE_API_KEY).and_return('mock_api_key')
+      allow(Rails.application.credentials).to receive(:[]).with(:GOOGLE_API_KEY)
       allow(Representative).to receive(:civic_api_to_representative_params).with(@fake_response)
     end
 
