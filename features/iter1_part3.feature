@@ -1,6 +1,6 @@
 Feature: Map Functionality
-@load-seed-data @US49
 
+  @load-seed-data @US49
   Scenario: Visiting the national map page
     Given I am on the map page
     Then I should see the map of the United States
