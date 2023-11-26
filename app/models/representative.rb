@@ -13,6 +13,7 @@ class Representative < ApplicationRecord
           ocdid_temp = office.division_id
         end
       end
+
       rep_attributes = { name: official.name, ocdid: ocdid_temp, title: title_temp,
         party: official.party, photo_url: official.photo_url }
       if official.address
@@ -20,6 +21,7 @@ class Representative < ApplicationRecord
                                 state: official.address[0].state, zip:  official.address[0].zip })
       end
       rep = Representative.find_or_create_by!(rep_attributes)
+
       reps.push(rep)
     end
     reps
