@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AjaxController, type: :controller do
-  let!(:state) { State.create(symbol: 'CA', name: 'California') }
+  let!(:state) { State.create(symbol: 'CA', name: 'California', fips_code: '06') }
   let!(:counties) { 
     3.times.map { |i| County.create(name: "County #{i}", state: state) }
   }
@@ -24,3 +24,4 @@ RSpec.describe AjaxController, type: :controller do
     end
   end
 end
+
