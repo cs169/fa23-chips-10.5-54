@@ -32,6 +32,8 @@ Rails.application.routes.draw do
             :as                                                    => :new_my_news_item
         match '/representatives/:representative_id/my_news_item/new', to:  'my_news_items#search',
                                                                       via: [:post]
+        # get '/top_articles', to: 'my_news_items#top_articles', as: 'top_articles'
+
         get '/representatives/:representative_id/my_news_item/:id' => 'my_news_items#edit',
             :as                                                    => :edit_my_news_item
         match '/representatives/:representative_id/my_news_item/:id', to:  'my_news_items#update',
