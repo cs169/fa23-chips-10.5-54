@@ -36,6 +36,11 @@ class MyNewsItemsController < SessionController
                 notice: 'News was successfully destroyed.'
   end
 
+  def search
+    @news_item = NewsItem.where(representative_id: params[:representative_id]).limit(5)
+    redirect_to 
+  end
+
   private
 
   def set_representative
