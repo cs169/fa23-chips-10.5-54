@@ -4,6 +4,8 @@ class MyNewsItemsController < SessionController
   before_action :set_representative
   before_action :set_representatives_list
   before_action :set_news_item, only: %i[edit update destroy]
+  # task 2.1
+  before_action :set_issues_list
 
   def new
     @news_item = NewsItem.new
@@ -14,6 +16,8 @@ class MyNewsItemsController < SessionController
   def create
     @news_item = NewsItem.new(news_item_params)
     if @news_item.save
+      # task 2.1
+      @representative.news_items << @news_item
       redirect_to representative_news_item_path(@representative, @news_item),
                   notice: 'News item was successfully created.'
     else
@@ -53,7 +57,16 @@ class MyNewsItemsController < SessionController
   end
 
   # Only allow a list of trusted parameters through.
+  # task 2.1
   def news_item_params
-    params.require(:news_item).permit(:news, :title, :description, :link, :representative_id)
+    params.require(:news_item).permit(:news, :title, :description, :link, :representative_id, :issue)
+  end
+
+  def set_issues_list
+    @issues_list = ['Free Speech', 'Immigration', 'Terrorism', "Social Security and
+    Medicare", 'Abortion', 'Student Loans', 'Gun Control', 'Unemployment',
+                    'Climate Change', 'Homelessness', 'Racism', 'Tax Reform', "Net
+    Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
+                    'Equal Pay']
   end
 end
