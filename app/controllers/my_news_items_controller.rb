@@ -43,7 +43,7 @@ class MyNewsItemsController < SessionController
   def search
     @news_item = NewsItem.where(representative_id: params[:representative_id]).limit(5)
     session[:search_results] = @news_item.map(&:attributes)
-    redirect_to # TODO
+    redirect_to # TODO: task2.3 redirect to new page
   end
 
   private
