@@ -34,3 +34,5 @@ Feature: Map Functionality
     And I should see "Erie County"
     And I should see "Joseph R. Biden"
     And I should not see "Leondra R. Kruger"
+    When I am on the create article page
+    Then I should see "Add News Article"
