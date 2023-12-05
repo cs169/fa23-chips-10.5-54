@@ -4,10 +4,17 @@ RSpec.describe MyNewsItemsController, type: :controller do
   let!(:representative) do
     Representative.create(
       name: "John Doe",
-      position: "Senator"
+      title: "Senator",  # 'position' 字段在 schema 中不存在，改为 'title'
+      ocdid: "ocdid_example",  # 示例值，根据需要调整
+      street: "123 Example St",  # 示例值，根据需要调整
+      city: "Example City",  # 示例值，根据需要调整
+      state: "Example State",  # 示例值，根据需要调整
+      zip: "12345",  # 示例值，根据需要调整
+      party: "Example Party",  # 示例值，根据需要调整
+      photo_url: "http://example.com/photo.jpg"  # 示例值，根据需要调整
     )
   end
-
+  
   let!(:news_item) do
     NewsItem.create(
       title: "New Policy Update",
@@ -16,6 +23,7 @@ RSpec.describe MyNewsItemsController, type: :controller do
       representative: representative
     )
   end
+  
 
   describe 'GET #new' do
     it 'assigns a new news_item and renders the new template' do

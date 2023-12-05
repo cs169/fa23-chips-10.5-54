@@ -1,9 +1,19 @@
 require 'rails_helper'
 
 RSpec.describe NewsItemsController, type: :controller do
-  let!(:representative) { 
-    Representative.create(name: "John Doe", position: "Senator")
-  }
+  let!(:representative) do
+    Representative.create(
+      name: "John Doe",
+      title: "Senator",  # 'position' 字段在 schema 中不存在，改为 'title'
+      ocdid: "ocdid_example",  # 示例值，根据需要调整
+      street: "123 Example St",  # 示例值，根据需要调整
+      city: "Example City",  # 示例值，根据需要调整
+      state: "Example State",  # 示例值，根据需要调整
+      zip: "12345",  # 示例值，根据需要调整
+      party: "Example Party",  # 示例值，根据需要调整
+      photo_url: "http://example.com/photo.jpg"  # 示例值，根据需要调整
+    )
+  end
   
   let!(:news_items) { 
     3.times.map do |i| 

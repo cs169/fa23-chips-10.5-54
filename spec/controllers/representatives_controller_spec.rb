@@ -2,8 +2,21 @@ require 'rails_helper'
 
 RSpec.describe RepresentativesController, type: :controller do
   let!(:representatives) { 
-    3.times.map { |i| Representative.create(name: "Representative #{i}", position: "Position #{i}") }
+    3.times.map do |i| 
+      Representative.create(
+        name: "Representative #{i}",
+        title: "Position #{i}",  # 使用 'title' 替代原来的 'position'
+        ocdid: "ocdid#{i}",  # 示例值，根据需要调整
+        street: "123 Example St #{i}",  # 示例值，根据需要调整
+        city: "Example City #{i}",  # 示例值，根据需要调整
+        state: "State #{i}",  # 示例值，根据需要调整
+        zip: "1234#{i}",  # 示例值，根据需要调整
+        party: "Party #{i}",  # 示例值，根据需要调整
+        photo_url: "http://example.com/photo#{i}.jpg"  # 示例值，根据需要调整
+      )
+    end
   }
+
 
   describe 'GET #index' do
     it 'assigns all representatives to @representatives and renders the index template' do
