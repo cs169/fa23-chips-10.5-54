@@ -58,6 +58,9 @@ ActiveRecord::Schema.define(version: 2023_11_30_042601) do
     t.string "photo_url"
   end
 
+  create_table "representatives_tables", force: :cascade do |t|
+  end
+
   create_table "states", force: :cascade do |t|
     t.string "name", null: false
     t.string "symbol", null: false
