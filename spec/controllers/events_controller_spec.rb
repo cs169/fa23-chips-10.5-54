@@ -2,10 +2,71 @@ require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
   # Create necessary data for testing
-  let!(:state) { State.create(symbol: 'CA', name: 'California') }
-  let!(:county) { County.create(name: 'Los Angeles', state: state) }
-  let!(:events) { 3.times.map { |i| Event.create(title: "Event #{i}", state: state, county: county) } }
-  let!(:other_event) { Event.create(title: 'Other Event', state: State.create(symbol: 'NY', name: 'New York')) }
+  let!(:state) {
+    State.create(
+      symbol: 'CA',
+      name: 'California',
+      fips_code: 6, 
+      is_territory: 0,
+      lat_min: 32.5,
+      lat_max: 42.0,
+      long_min: -124.3,
+      long_max: -114.1
+    )
+  }
+
+  let!(:county) {
+    County.create(
+      name: 'Los Angeles',
+      state: state,
+      fips_code: 37,
+      fips_class: 'H1'
+    )
+  }
+
+  let!(:events) {
+    3.times.map { |i| 
+      Event.create(
+        name: "Event #{i}",
+        county: county,
+        description: "Description for Event #{i}",
+        start_time: Time.now,
+        end_time: Time.now + 1.day
+      )
+    }
+  }
+
+  let!(:other_state) {
+    State.create(
+      symbol: 'NY',
+      name: 'New York',
+      fips_code: 36,
+      is_territory: 0,
+      lat_min: 40.5,
+      lat_max: 45.0,
+      long_min: -79.8,
+      long_max: -71.9
+    )
+  }
+
+  let!(:other_county) {
+    County.create(
+      name: 'Some County',
+      state: other_state,
+      fips_code: 100,
+      fips_class: 'H2'
+    )
+  }
+
+  let!(:other_event) {
+    Event.create(
+      name: 'Other Event',
+      county: other_county,
+      description: 'Description for Other Event',
+      start_time: Time.now,
+      end_time: Time.now + 1.day
+    )
+  }
 
   describe 'GET #index' do
     context 'when no filter is applied' do
