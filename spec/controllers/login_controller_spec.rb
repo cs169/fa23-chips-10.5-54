@@ -34,7 +34,7 @@ RSpec.describe LoginController, type: :controller do
 
   describe 'POST #google_oauth2' do
     before do
-      allow(request.env).to receive(:[]).with('omniauth.auth').and_return(google_user_info)
+      request.env['omniauth.auth'] = google_user_info
     end
 
     it 'creates a new Google user and redirects to the destination' do
@@ -48,7 +48,7 @@ RSpec.describe LoginController, type: :controller do
 
   describe 'POST #github' do
     before do
-      allow(request.env).to receive(:[]).with('omniauth.auth').and_return(github_user_info)
+      request.env['omniauth.auth'] = github_user_info
     end
 
     it 'creates a new Github user and redirects to the destination' do
