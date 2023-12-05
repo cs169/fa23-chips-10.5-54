@@ -19,11 +19,12 @@ RSpec.describe NewsItemsController, type: :controller do
     3.times.map do |i| 
       NewsItem.create(
         title: "News Title #{i}", 
-        content: "Content for news item #{i}",
-        published_on: Date.today - i.days,
+        description: "Content for news item #{i}",  # 使用 'description' 替代原来的 'content'
+        link: "http://example.com/news#{i}",  # 添加缺失的 'link' 字段
         representative: representative
       )
-    end 
+    end
+    
   }
 
   describe 'GET #index' do
