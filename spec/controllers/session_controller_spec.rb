@@ -4,8 +4,14 @@ RSpec.describe SessionController, type: :controller do
   describe 'GET #some_action' do
     context 'when user is logged in' do
       it 'allows access to the action' do
-        user = create(:user)
-        session[:current_user_id] = user.id
+        user = User.create(
+          provider: 1,  # 示例值
+          uid: "123456",  # 示例值
+          email: "user@example.com",
+          first_name: "John",
+          last_name: "Doe"
+        )
+        session[:current_user_id] = user.uid
 
         get :some_action
         expect(response).to be_successful
