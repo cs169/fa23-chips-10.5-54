@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rails_helper'
 
 # RSpec.describe MyEventsController, type: :controller do
@@ -13,7 +14,7 @@
 #     State.create(
 #       symbol: 'CA',
 #       name: 'California',
-#       fips_code: 6, 
+#       fips_code: 6,
 #       is_territory: 0,
 #       lat_min: 32.5,
 #       lat_max: 42.0,
@@ -21,7 +22,8 @@
 #       long_max: -114.1
 #     )
 #   }
-#   let!(:event) { Event.create(name: "Sample Event", county_id: 1, description: "Event description", start_time: Time.now, end_time: Time.now + 1.hour) }
+#   let!(:event) { Event.create(name: "Sample Event", county_id: 1, description: "Event description",
+# start_time: Time.now, end_time: Time.now + 1.hour) }
 
 #   describe 'GET #new' do
 #     it 'assigns a new event and renders the new template' do
@@ -42,7 +44,8 @@
 #   describe 'POST #create' do
 #     context 'with valid parameters' do
 #       it 'creates a new event and redirects to the events path' do
-#         valid_attributes = { name: "New Event", county_id: 1, description: "New event description", start_time: Time.now, end_time: Time.now + 2.hours }
+#         valid_attributes = { name: "New Event", county_id: 1, description: "New event description",
+# start_time: Time.now, end_time: Time.now + 2.hours }
 #         expect {
 #           post :create, params: { event: valid_attributes }
 #         }.to change(Event, :count).by(1)

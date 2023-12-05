@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LoginController, type: :controller do
@@ -5,11 +7,11 @@ RSpec.describe LoginController, type: :controller do
   let(:google_user_info) do
     {
       'provider' => 'google_oauth2',
-      'uid' => '123456',
-      'info' => {
+      'uid'      => '123456',
+      'info'     => {
         'first_name' => 'John',
-        'last_name' => 'Doe',
-        'email' => 'john.doe@example.com'
+        'last_name'  => 'Doe',
+        'email'      => 'john.doe@example.com'
       }
     }
   end
@@ -17,9 +19,9 @@ RSpec.describe LoginController, type: :controller do
   let(:github_user_info) do
     {
       'provider' => 'github',
-      'uid' => '123457',
-      'info' => {
-        'name' => 'Jane Doe',
+      'uid'      => '123457',
+      'info'     => {
+        'name'  => 'Jane Doe',
         'email' => 'jane.doe@example.com'
       }
     }
@@ -38,9 +40,9 @@ RSpec.describe LoginController, type: :controller do
     end
 
     it 'creates a new Google user and redirects to the destination' do
-      expect {
+      expect do
         post :google_oauth2
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
       expect(session[:current_user_id]).not_to be_nil
       expect(response).to redirect_to(root_url)
     end
@@ -52,9 +54,9 @@ RSpec.describe LoginController, type: :controller do
     end
 
     it 'creates a new Github user and redirects to the destination' do
-      expect {
+      expect do
         post :github
-      }.to change(User, :count).by(1)
+      end.to change(User, :count).by(1)
       expect(session[:current_user_id]).not_to be_nil
       expect(response).to redirect_to(root_url)
     end

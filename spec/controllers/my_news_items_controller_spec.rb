@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rails_helper'
 
 # RSpec.describe MyNewsItemsController, type: :controller do
@@ -14,7 +15,7 @@
 #       photo_url: "http://example.com/photo.jpg"  # 示例值，根据需要调整
 #     )
 #   end
-  
+
 #   let!(:news_item) do
 #     NewsItem.create(
 #       title: "New Policy Update",
@@ -23,7 +24,6 @@
 #       representative: representative
 #     )
 #   end
-  
 
 #   describe 'GET #new' do
 #     it 'assigns a new news_item and renders the new template' do
@@ -89,7 +89,8 @@
 #       end
 
 #       it 'updates the requested news_item and redirects to the show page' do
-#         patch :update, params: { id: news_item.id, news_item: valid_update_attributes, representative_id: representative.id }
+#         patch :update, params: { id: news_item.id, news_item: valid_update_attributes,
+# representative_id: representative.id }
 #         news_item.reload
 #         expect(news_item.title).to eq("Updated News Title")
 #         expect(news_item.description).to eq("Updated details about the news")
@@ -107,7 +108,8 @@
 #       end
 
 #       it 'does not update the news_item and renders the edit template' do
-#         patch :update, params: { id: news_item.id, news_item: invalid_update_attributes, representative_id: representative.id }
+#         patch :update, params: { id: news_item.id, news_item: invalid_update_attributes,
+# representative_id: representative.id }
 #         expect(response).to render_template(:edit)
 #       end
 #     end

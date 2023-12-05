@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Step definitions for setting up events
 Given('there are events in different states') do
   # Create states and events in those states

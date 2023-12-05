@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # require 'rails_helper'
 
 # RSpec.describe SessionController, type: :controller do
@@ -16,7 +17,7 @@
 #         get :index  # Use an actual action like 'index'
 #         expect(response).to be_successful
 #         # Assuming @current_user is set in the action
-#         expect(assigns(:current_user)).to eq(user)  
+#         expect(assigns(:current_user)).to eq(user)
 #       end
 #     end
 

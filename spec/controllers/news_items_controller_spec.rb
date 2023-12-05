@@ -1,31 +1,32 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe NewsItemsController, type: :controller do
   let!(:representative) do
     Representative.create(
-      name: "John Doe",
-      title: "Senator",  # 'position' 字段在 schema 中不存在，改为 'title'
-      ocdid: "ocdid_example",  # 示例值，根据需要调整
-      street: "123 Example St",  # 示例值，根据需要调整
-      city: "Example City",  # 示例值，根据需要调整
-      state: "Example State",  # 示例值，根据需要调整
-      zip: "12345",  # 示例值，根据需要调整
-      party: "Example Party",  # 示例值，根据需要调整
-      photo_url: "http://example.com/photo.jpg"  # 示例值，根据需要调整
+      name:      'John Doe',
+      title:     'Senator', # 'position' 字段在 schema 中不存在，改为 'title'
+      ocdid:     'ocdid_example', # 示例值，根据需要调整
+      street:    '123 Example St', # 示例值，根据需要调整
+      city:      'Example City', # 示例值，根据需要调整
+      state:     'Example State', # 示例值，根据需要调整
+      zip:       '12345', # 示例值，根据需要调整
+      party:     'Example Party', # 示例值，根据需要调整
+      photo_url: 'http://example.com/photo.jpg' # 示例值，根据需要调整
     )
   end
-  
-  let!(:news_items) { 
-    3.times.map do |i| 
+
+  let!(:news_items) do
+    3.times.map do |i|
       NewsItem.create(
-        title: "News Title #{i}", 
-        description: "Content for news item #{i}",  # 使用 'description' 替代原来的 'content'
-        link: "http://example.com/news#{i}",  # 添加缺失的 'link' 字段
+        title:          "News Title #{i}",
+        description:    "Content for news item #{i}", # 使用 'description' 替代原来的 'content'
+        link:           "http://example.com/news#{i}",  # 添加缺失的 'link' 字段
         representative: representative
       )
     end
-    
-  }
+  end
 
   describe 'GET #index' do
     it 'assigns all news items of a representative to @news_items and renders the index template' do

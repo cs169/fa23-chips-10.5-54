@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Given('a user exists with uid {string} and provider {string}') do |uid, provider|
   User.create(uid: uid, provider: User.providers[provider.to_sym])
 end
@@ -22,7 +24,7 @@ end
 
 Then('I should see a uniqueness validation error') do
   expect(@new_user.valid?).to be false
-  expect(@new_user.errors[:uid]).to include("has already been taken")
+  expect(@new_user.errors[:uid]).to include('has already been taken')
 end
 
 Then('I should see {string}') do |expected_result|
