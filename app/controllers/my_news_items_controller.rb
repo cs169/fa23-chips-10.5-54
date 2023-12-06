@@ -62,19 +62,14 @@ class MyNewsItemsController < SessionController
     representative = params[:news_item][:representative]
     issue = params[:news_item][:issue]
 
-    # Encode the query parameters
     query = CGI.escape("#{representative} #{issue}")
 
-    # Build the URI for the News API request
     uri = URI("https://newsapi.org/v2/everything?q=#{query}&pageSize=5&apiKey=#{api_key}")
 
-    # Make the HTTP Get request to the News API
     response = Net::HTTP.get(uri)
 
-    # Parse the JSON response
     articles = JSON.parse(response)['articles']
 
-    # Store the top five articles in the params
     @articles = articles.map do |article|
       {
         title:       article['title'],

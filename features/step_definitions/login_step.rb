@@ -4,7 +4,7 @@ Given('I am on the login page') do
   visit '/login'
 end
 
-When('I click the botton {string}') do |button|
+When('I click the button {string}') do |button|
   click_button(button)
 end
 

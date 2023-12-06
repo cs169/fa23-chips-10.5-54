@@ -57,27 +57,24 @@
         <%= f.hidden_field :representative_id, value: @representative.id %>
         <%= f.hidden_field :issue, value: params[:news_item][:issue] %>
 
-        <% if @articles.present? %>
-            <% @articles.each_with_index do |article, index| %>
-                <% if index < 5 %>
-                    <div class="article-container" style="width: 80%;"> <!-- 增加宽度样式 -->
-                        <div class="article-title">
-                            Title: <%= article[:title] %>
-                        </div>
-                        <%= f.radio_button :link, article[:url], id: "article_#{index}" %>
-                        <label for="article_<%= index %>">Select This Article</label>
-                        <div class="article-description">
-                            Description: <%= article[:description] %>
-                        </div>
-                        <a href="<%= article[:url] %>" class="article-link" target="_blank">Read more</a>
-                        <%= f.hidden_field :title, value: article[:title] %>
-                        <%= f.hidden_field :description, value: article[:description] %>
+        <% @articles.each_with_index do |article, index| %>
+            <% if index < 5 %>
+                <div class="article-container" style="width: 80%;">
+                    <div class="article-title">
+                        Title: <%= article[:title] %>
                     </div>
-                <% end %>
+                    <%= f.radio_button :link, article[:url], id: "article_#{index}", onclick: "setTitleAndDescription('#{article[:title]}', '#{article[:description]}')" %>
+                    <label for="article_<%= index %>">Select This Article</label>
+                    <div class="article-description">
+                        Description: <%= article[:description] %>
+                    </div>
+                    <a href="<%= article[:url] %>" class="article-link" target="_blank">Read more</a>
+                </div>
             <% end %>
-        <% else %>
-            <p>No articles found.</p>
         <% end %>
+
+        <%= f.hidden_field :title, id: "article_title" %>
+        <%= f.hidden_field :description, id: "article_description" %>
 
         <div>
             <label for="rating">Rating:</label>
@@ -85,6 +82,14 @@
         </div>
 
         <%= f.submit "Save", style: "font-size: 16px; padding: 5px 15px;" %>
+
     <% end %>
+
+    <script>
+        function setTitleAndDescription(title, description) {
+            document.getElementById('article_title').value = title;
+            document.getElementById('article_description').value = description;
+        }
+    </script>
 </body>
 </html>
