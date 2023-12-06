@@ -1,7 +1,17 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe UserController, type: :controller do
-  let!(:user) { User.create(email: 'user@example.com', password: 'password') }
+  let!(:user) do
+    User.create(
+      provider:   1, # 示例值
+      uid:        '123456', # 示例值
+      email:      'user@example.com',
+      first_name: 'John',
+      last_name:  'Doe'
+    )
+  end
 
   describe 'GET #profile' do
     context 'when user is logged in' do
