@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit News Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .info-text {
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        .article-container {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px auto;
+            max-width: 1000px;
+        }
+        .article-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .article-description {
+            margin-bottom: 5px;
+        }
+        .article-link {
+            color: #06c;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="submit"] {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit News Item</h1>
+    <div class="info-text">Representative: <%= @representative.name %></div>
+    <div class="info-text">Issue: <%= params[:news_item][:issue] %></div>
+    <div class="info-text">Select an article:</div>
+
+    <%= form_for :news_item, url: representative_create_my_news_item_path(@representative), method: :post do |f| %>
+
+        <%= f.hidden_field :representative_id, value: @representative.id %>
+        <%= f.hidden_field :issue, value: params[:news_item][:issue] %>
+
+        <% if @articles.present? %>
+            <% @articles.each_with_index do |article, index| %>
+                <% if index < 5 %>
+                    <div class="article-container" style="width: 80%;"> <!-- 增加宽度样式 -->
+                        <div class="article-title">
+                            Title: <%= article[:title] %>
+                        </div>
+                        <%= f.radio_button :link, article[:url], id: "article_#{index}" %>
+                        <label for="article_<%= index %>">Select This Article</label>
+                        <div class="article-description">
+                            Description: <%= article[:description] %>
+                        </div>
+                        <a href="<%= article[:url] %>" class="article-link" target="_blank">Read more</a>
+                        <%= f.hidden_field :title, value: article[:title] %>
+                        <%= f.hidden_field :description, value: article[:description] %>
+                    </div>
+                <% end %>
+            <% end %>
+        <% else %>
+            <p>No articles found.</p>
+        <% end %>
+
+        <div>
+            <label for="rating">Rating:</label>
+            <%= f.number_field :rating, id: "rating" %>
+        </div>
+
+        <%= f.submit "Save", style: "font-size: 16px; padding: 5px 15px;" %>
+    <% end %>
+</body>
+</html>

@@ -17,6 +17,7 @@
                         %tr
                             %th #
                             %th Issue
+                            %th Rating
                             %th Name
                             %th Description
                             %th Posted
@@ -26,6 +27,7 @@
                             %tr
                                 %td= index + 1
                                 %td= item.issue
+                                %td= item.rating
                                 %td
                                     %a{ href: item.link }
                                         = item.title

@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'net/http'
+require 'json'
+
 class MyNewsItemsController < SessionController
   before_action :set_representative
   before_action :set_representatives_list
@@ -46,6 +49,43 @@ class MyNewsItemsController < SessionController
     redirect_to # TODO: task2.3 redirect to new page
   end
 
+  def set_issues_list
+    @issues_list = ['Free Speech', 'Immigration', 'Terrorism', "Social Security and
+    Medicare", 'Abortion', 'Student Loans', 'Gun Control', 'Unemployment',
+                    'Climate Change', 'Homelessness', 'Racism', 'Tax Reform', "Net
+    Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
+                    'Equal Pay']
+  end
+
+  def edit_news_item
+    api_key = Rails.application.credentials[:NEWS_KEY]
+    representative = params[:news_item][:representative]
+    issue = params[:news_item][:issue]
+
+    # Encode the query parameters
+    query = CGI.escape("#{representative} #{issue}")
+
+    # Build the URI for the News API request
+    uri = URI("https://newsapi.org/v2/everything?q=#{query}&pageSize=5&apiKey=#{api_key}")
+
+    # Make the HTTP Get request to the News API
+    response = Net::HTTP.get(uri)
+
+    # Parse the JSON response
+    articles = JSON.parse(response)['articles']
+
+    # Store the top five articles in the params
+    @articles = articles.map do |article|
+      {
+        title:       article['title'],
+        url:         article['url'],
+        description: article['description']
+      }
+    end
+
+    render('edit_news_item')
+  end
+
   private
 
   def set_representative
@@ -65,14 +105,6 @@ class MyNewsItemsController < SessionController
   # Only allow a list of trusted parameters through.
   # task 2.1
   def news_item_params
-    params.require(:news_item).permit(:news, :title, :description, :link, :representative_id, :issue)
-  end
-
-  def set_issues_list
-    @issues_list = ['Free Speech', 'Immigration', 'Terrorism', "Social Security and
-    Medicare", 'Abortion', 'Student Loans', 'Gun Control', 'Unemployment',
-                    'Climate Change', 'Homelessness', 'Racism', 'Tax Reform', "Net
-    Neutrality", 'Religious Freedom', 'Border Security', 'Minimum Wage',
-                    'Equal Pay']
+    params.require(:news_item).permit(:news, :title, :description, :link, :representative_id, :issue, :rating)
   end
 end
