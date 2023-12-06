@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     get '/search/(:address)' => 'search#search', :as => 'search_representatives'
 
     # iter2 Task 2.3
-    get '/search_results', to: 'my_news_items#search_results', as: 'search_results'
+    get '/search' => 'my_news_items#search', :as => 'search'
 
 
 end

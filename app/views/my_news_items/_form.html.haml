@@ -1,4 +1,4 @@
-= form_for news_item, url: search_results_path, method: :get do |f|
+= form_for news_item, url: search_path, method: :get do |f|
     - if news_item.errors.any?
         .alert.alert-danger
             %h2
