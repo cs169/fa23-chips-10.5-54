@@ -23,7 +23,7 @@ Feature: Edit News Item
     Then I should see "Representative: Joseph R. Biden"
     When I choose the Betye Saar Reassembles the Lives of Black Women
     When I click the button "Save"
-    Then I should see "https://www.newyorker.com/magazine/2023/11/27/betye-saar-and-the-lives-of-black-women"
+    Then I should see "https://www.npr.org/sections/health-shots/2023/12/05/1217148407/black-americans-racism-health-care"
     Then I should not see "A Black Physician Takes on Racism in Medicine"
     Then I should not see "The Far Right Is Loving Elon Musk's Comments About Jewish Groups Corrupting 'the West'"
     Then I should not see "Paris Mayor quits Twitter, calls it a 'global sewer'"
