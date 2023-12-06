@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe UserController, type: :controller do
   let!(:user) do
     User.create(
-      provider:   1, # 示例值
-      uid:        '123456', # 示例值
-      email:      'user@example.com',
+      provider:   'google_oauth2',
+      uid:        '123456',
+      email:      'john.doe@example.com',
       first_name: 'John',
       last_name:  'Doe'
     )
