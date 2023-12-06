@@ -1,4 +1,4 @@
-Feature: Iteration 2 News Articles
+Feature: Edit News Item
 
   @load-seed-data @US49
   Scenario: add new news article
